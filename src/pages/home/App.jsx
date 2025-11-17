@@ -3,6 +3,7 @@ import Login from "../login/Login.jsx";
 import Register from "../register/Register.jsx";
 import ProtectRoute from "../../services/ProtectRoute.jsx";
 import Posts from "../Posts/Posts.jsx";
+import CreatePosts from "../Posts/CreatePosts.jsx";
 
 function App() {
     return (
@@ -14,6 +15,12 @@ function App() {
             <Route
                 path="/posts"
                 element={ <Posts />}
+            />
+            <Route
+                path="/posts/create"
+                element={
+                    <CreatePosts />
+                }
             />
         </Routes>
     )
