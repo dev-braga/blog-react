@@ -1,7 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import Login from "../login/Login.jsx";
-import Register from "../login/Register.jsx";
+import Register from "../register/Register.jsx";
 import ProtectRoute from "../../services/ProtectRoute.jsx";
+import Posts from "../Posts/Posts.jsx";
 
 function App() {
     return (
@@ -9,11 +10,11 @@ function App() {
             <Route path="/" element={ <Login />} />
             <Route 
                 path="/register" 
-                element={ 
-                    <ProtectRoute>
-                        <Register />
-                    </ProtectRoute>
-                } />
+                element={ <Register />} />
+            <Route
+                path="/posts"
+                element={ <Posts />}
+            />
         </Routes>
     )
 }
