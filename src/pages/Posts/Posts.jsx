@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react"
 import ImgDefault from '../../assets/avatar-default.svg'
+import Header from "../components/Header";
 
 function Posts() {
 
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [allPosts, setAllPosts] = useState([])
+    const userLogged = JSON.parse(localStorage.getItem("item"));
 
     useEffect(()=> {
         async function loadPosts() {
@@ -17,6 +20,7 @@ function Posts() {
                 });
                 const data = await response.json();
                 setPosts(data);
+                setAllPosts(data)
             }catch(e){
                 console.log("Erro ao carregar", e);
             }finally{
@@ -27,8 +31,35 @@ function Posts() {
         loadPosts();
     }, []);
 
+    function logout(){
+        localStorage.removeItem("token")
+        window.location.href = "/"
+    }
+
+    function handleFilterChange(filter){
+        let sorted = [...allPosts];
+
+        if(filter === "asc"){
+            sorted.sort((a, b) => a.titulo.localeCompare(b.titulo));
+        }
+        if(filter === "desc"){
+            sorted.sort((a, b) => b.titulo.localeCompare(a.titulo));
+        }
+        if(filter === "meus"){
+            sorted = allPosts.filter((post) => post.autor.nome === userLogged)
+        }
+
+        setPosts(sorted);
+    }
+
     return(
         <div className="bg-gray-900 py-24 sm:py-32">
+
+            <Header
+                onLogout={logout}
+                onFilterChange={handleFilterChange}
+            />
+
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="mx-auto max-w-2xl lg:mx-0">
                     <h2 className="text-4xl font-semibold tracking-tight text-pretty text-white sm:text-5xl">From the blog</h2>
