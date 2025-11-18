@@ -95,29 +95,32 @@ Frontend
 
 React
 
-Vite
+- Vite
 
-TailwindCSS
+- TailwindCSS
 
-Hooks (useState, useEffect)
+- Hooks (useState, useEffect)
 
-Fetch API (com cookies)
+- Fetch API (com cookies)
 
 Backend
 
-Java 17
+- Java 17
 
-Spring Boot
+- Spring Boot
 
-Spring Web
+- Spring Web
 
-Spring Security (session)
+- Spring Security (session)
 
-H2 Database
+- H2 Database
 
-JPA / Hibernate
+- JPA / Hibernate
 
-📷 Prints das Telas (Opcional – posso criar se quiser)
+<img width="1887" height="893" alt="image" src="https://github.com/user-attachments/assets/5b4c2c45-021b-4520-a6c3-ffd3531fd3b3" />
+<img width="1825" height="909" alt="image" src="https://github.com/user-attachments/assets/a11725c4-a8e0-4189-8919-e34591cdc5f4" />
+<img width="1905" height="918" alt="image" src="https://github.com/user-attachments/assets/87b5b70d-9607-4cfd-acfb-b73d44ecce00" />
+
 
 Se quiser, eu gero imagens, adiciono GIFs ou deixo essa seção visual.
 
