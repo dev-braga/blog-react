@@ -5,7 +5,7 @@ function FabCreatePost( {onclick}) {
     <button
         onClick={onclick}
         className="
-            fixed bottom-7 right-7 z-10
+            fixed bottom-7 right-7 z-100
             h-16 w-16
             rounded-full
             bg-blue-600 text-white
@@ -14,7 +14,7 @@ function FabCreatePost( {onclick}) {
             hover:bg-blue-700
             transition-all duration-300
             hover:scale-110
-            active:scale-95
+            active:scale-99
             cursor-pointer
             
         "

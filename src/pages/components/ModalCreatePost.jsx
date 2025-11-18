@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function ModalCreatePost({ open, onClose, onSubmit }) {
 
@@ -17,7 +17,7 @@ function ModalCreatePost({ open, onClose, onSubmit }) {
         credentials: "include",
         body: JSON.stringify({ titulo, conteudo }),
       });
-      
+
       if (!response) {
         console.log("Erro na resposta")
       }
@@ -91,7 +91,6 @@ function ModalCreatePost({ open, onClose, onSubmit }) {
 
           <button
             type="submit"
-            onClick={handlePost}
             className="
               w-full bg-blue-600 hover:bg-blue-700 transition
               text-white font-semibold py-3 rounded-lg

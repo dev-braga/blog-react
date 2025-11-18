@@ -134,21 +134,22 @@ function Posts() {
                     <p className="text-sm font-medium text-white">{post.autor.nome}</p>
                     <p className="text-xs text-gray-500">Autor</p>
                   </div>
+
                   {post.autor.nome === userLogged && (
                     <div className="flex gap-3">
 
                       <button
                         onClick={() => editPost(post)}
-                        className="flex-1 py-2 rounded-lg bg-blue-600/20 text-blue-400 
-                   hover:bg-blue-600/30 transition text-sm font-medium"
+                        className="flex-1 py-2 rounded-lg bg-blue-600/20 text-blue-300 
+                   hover:bg-blue-600/30 transition text-sm font-medium cursor-pointer"
                       >
                         Editar
                       </button>
 
                       <button
                         onClick={() => deletePost(post.id)}
-                        className="flex-1 py-2 rounded-lg bg-red-600/20 text-red-400 
-                   hover:bg-red-600/30 transition text-sm font-medium"
+                        className="flex-1 py-2 w-16 rounded-lg bg-red-600/20 text-red-400 
+                   hover:bg-red-600/30 transition text-sm font-medium cursor-pointer"
                       >
                         Excluir
                       </button>
