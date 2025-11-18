@@ -74,7 +74,7 @@ function Header({ onLogout, onFilterChange }) {
 
           {/* USER */}
           <div className="flex items-center gap-3">
-            <span className="text-sm opacity-80">{userName || "Usuário"}</span>
+            <span className="text-sm opacity-80">Olá, {userName || "Usuário"}</span>
 
 
             <button

@@ -16,12 +16,6 @@ function App() {
                 path="/posts"
                 element={ <Posts />}
             />
-            <Route
-                path="/posts/create"
-                element={
-                    <CreatePosts />
-                }
-            />
         </Routes>
     )
 }

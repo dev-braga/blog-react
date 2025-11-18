@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import ImgDefault from "../../assets/avatar-default.svg";
 import Header from "../components/Header";
 import FabCreatePosts from "../components/FabCreatePost";
+import ModalCreatePost from "../components/ModalCreatePost";
 
 function Posts() {
   const [posts, setPosts] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
   const [loading, setLoading] = useState(true);
   const [allPosts, setAllPosts] = useState([]);
-  const userLogged = JSON.parse(localStorage.getItem("item"));
+  const userLogged = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
     async function loadPosts() {
@@ -30,8 +32,33 @@ function Posts() {
     loadPosts();
   }, []);
 
-  function createPosts(){
-    window.location.href = "/posts/create";
+  function createPosts() {
+    setOpenModal(false);
+    window.location.href = "/posts";
+  }
+
+  async function deletePost(id) {
+    try {
+      const response = await fetch(`http://localhost:8080/posts/${id}`, {
+        method: "DELETE",
+        credentials: "include"
+      });
+
+      if (!response.ok) {
+        console.log("Erro ao excluir", response.status)
+      }
+
+      setPosts(prev => prev.filter(post => post.id !== id));
+      setAllPosts(prev => prev.filter(post => post.id !== id));
+
+    } catch (error) {
+      console.log("Erro ao excluir post: ", error)
+      
+    }
+  }
+
+  function editPost(post){
+    console.log("Editar: ", post);
   }
 
   function logout() {
@@ -53,7 +80,12 @@ function Posts() {
     <div className="min-h-screen bg-gray-950 text-white">
       <Header onFilterChange={handleFilterChange} onLogout={logout} />
 
-      <FabCreatePosts onclick={createPosts} />
+      <FabCreatePosts onclick={() => setOpenModal(true)} />
+
+      <ModalCreatePost
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+        onSubmit={createPosts} />
 
       <section className="max-w-6xl mx-auto px-6 pt-32 pb-20 animate-fadeIn">
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -102,12 +134,33 @@ function Posts() {
                     <p className="text-sm font-medium text-white">{post.autor.nome}</p>
                     <p className="text-xs text-gray-500">Autor</p>
                   </div>
+                  {post.autor.nome === userLogged && (
+                    <div className="flex gap-3">
+
+                      <button
+                        onClick={() => editPost(post)}
+                        className="flex-1 py-2 rounded-lg bg-blue-600/20 text-blue-400 
+                   hover:bg-blue-600/30 transition text-sm font-medium"
+                      >
+                        Editar
+                      </button>
+
+                      <button
+                        onClick={() => deletePost(post.id)}
+                        className="flex-1 py-2 rounded-lg bg-red-600/20 text-red-400 
+                   hover:bg-red-600/30 transition text-sm font-medium"
+                      >
+                        Excluir
+                      </button>
+
+                    </div>
+                  )}
                 </div>
-        
+
               </article>
-              
+
             ))}
-        
+
           </div>
         )}
 
