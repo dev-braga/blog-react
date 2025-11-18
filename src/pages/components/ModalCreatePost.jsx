@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function ModalCreatePost({ open, onClose, onSubmit }) {
+function ModalCreatePost({ open, onClose, onSubmit, onUpdate }) {
 
   const [titulo, setTitulo] = useState("")
   const [conteudo, setConteudo] = useState("")
@@ -23,6 +23,8 @@ function ModalCreatePost({ open, onClose, onSubmit }) {
       }
 
       const data = response.json()
+      onUpdate()
+      onSubmit()
 
     } catch (error) {
       console.log(error)
@@ -55,7 +57,7 @@ function ModalCreatePost({ open, onClose, onSubmit }) {
 
         {/* FORM */}
         <form
-          onSubmit={onSubmit}
+          onSubmit={handlePost}
           className="space-y-5"
         >
           <div>

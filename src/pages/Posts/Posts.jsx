@@ -3,10 +3,13 @@ import ImgDefault from "../../assets/avatar-default.svg";
 import Header from "../components/Header";
 import FabCreatePosts from "../components/FabCreatePost";
 import ModalCreatePost from "../components/ModalCreatePost";
+import ModalEditPost from "../components/ModalEditPost";
 
 function Posts() {
   const [posts, setPosts] = useState([]);
-  const [openModal, setOpenModal] = useState(false);
+  const [openModalCreate, setOpenModalCreate] = useState(false);
+  const [openModalEdit, setOpenModalEdit] = useState(false)
+  const [editingPost, setEditingPost] = useState(null)
   const [loading, setLoading] = useState(true);
   const [allPosts, setAllPosts] = useState([]);
   const userLogged = JSON.parse(localStorage.getItem("user"));
@@ -33,11 +36,13 @@ function Posts() {
   }, []);
 
   function createPosts() {
-    setOpenModal(false);
+    setOpenModalCreate(false);
     window.location.href = "/posts";
   }
 
   async function deletePost(id) {
+
+    if (!confirm("Tem certeza que deseja excluir?")) return;
     try {
       const response = await fetch(`http://localhost:8080/posts/${id}`, {
         method: "DELETE",
@@ -50,15 +55,26 @@ function Posts() {
 
       setPosts(prev => prev.filter(post => post.id !== id));
       setAllPosts(prev => prev.filter(post => post.id !== id));
+      reloadPosts();
 
     } catch (error) {
       console.log("Erro ao excluir post: ", error)
-      
+
     }
   }
 
-  function editPost(post){
-    console.log("Editar: ", post);
+  function handleEdit(post) {
+    setEditingPost(post);
+    setOpenModalEdit(true);
+  }
+
+  async function reloadPosts() {
+    const response = await fetch("http://localhost:8080/posts", {
+      credentials: "include"
+    });
+    const data = await response.json();
+    setPosts(data);
+    setAllPosts(data);
   }
 
   function logout() {
@@ -80,12 +96,21 @@ function Posts() {
     <div className="min-h-screen bg-gray-950 text-white">
       <Header onFilterChange={handleFilterChange} onLogout={logout} />
 
-      <FabCreatePosts onclick={() => setOpenModal(true)} />
+      <FabCreatePosts onclick={() => setOpenModalCreate(true)} />
 
       <ModalCreatePost
-        open={openModal}
-        onClose={() => setOpenModal(false)}
-        onSubmit={createPosts} />
+        open={openModalCreate}
+        onClose={() => setOpenModalCreate(false)}
+        onSubmit={createPosts} 
+        onUpdate={reloadPosts}
+        />
+
+      <ModalEditPost
+        open={openModalEdit}
+        onClose={() => setOpenModalEdit(false)}
+        post={editingPost}
+        onUpdated={reloadPosts}
+      />
 
       <section className="max-w-6xl mx-auto px-6 pt-32 pb-20 animate-fadeIn">
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -139,7 +164,7 @@ function Posts() {
                     <div className="flex gap-3">
 
                       <button
-                        onClick={() => editPost(post)}
+                        onClick={() => handleEdit(post)}
                         className="flex-1 py-2 rounded-lg bg-blue-600/20 text-blue-300 
                    hover:bg-blue-600/30 transition text-sm font-medium cursor-pointer"
                       >
