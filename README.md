@@ -1,16 +1,131 @@
-# React + Vite
+📘 TechFlow Blog – Frontend (React)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este é o frontend do TechFlow Blog, uma aplicação completa de posts com autenticação via sessão, criação, edição e exclusão de posts.
+O projeto foi desenvolvido em React + TailwindCSS e se comunica com um backend em Spring Boot.
 
-Currently, two official plugins are available:
+🚀 Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🔐 Login com sessão (cookies)
 
-## React Compiler
+📝 Criar posts
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+✏ Editar posts
 
-## Expanding the ESLint configuration
+❌ Excluir posts
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+🔍 Filtro de posts (A–Z, Z–A, Meus posts)
+
+👤 Identificação do autor de cada post
+
+🌙 Interface moderna com TailwindCSS
+
+📦 Requisitos para rodar o projeto
+✔ Frontend
+
+Node.js 16+
+
+NPM 8+
+
+Navegador atualizado
+
+✔ Backend
+
+O backend está disponível neste repositório:
+👉 https://github.com/dev-braga/desafio-desenvolvedor-junior-3.git
+
+Ele é responsável por:
+
+Autenticação com HttpSession
+
+CRUD de posts
+
+Banco H2
+
+🛠 Como rodar o Frontend
+1️⃣ Clone o repositório
+git clone https://github.com/dev-braga/SEU_REPOSITORIO_FRONTEND.git
+
+2️⃣ Entre na pasta do projeto
+cd nome-do-projeto
+
+3️⃣ Instale as dependências
+npm install
+
+4️⃣ Inicie o projeto
+npm run dev
+
+
+O frontend vai rodar em:
+👉 http://localhost:5173
+
+🛠 Como rodar o Backend
+1️⃣ Clone o backend
+git clone https://github.com/dev-braga/desafio-desenvolvedor-junior-3.git
+
+2️⃣ Abra no IntelliJ, Eclipse ou VS Code (com extensão Java)
+3️⃣ Instale as dependências (Maven baixa tudo automaticamente)
+4️⃣ Rode a aplicação
+
+Por padrão, ela sobe em:
+👉 http://localhost:8080
+
+🔍 Console do H2 Database
+
+👉 http://localhost:8080/h2-console
+
+Login padrão já configurado no projeto.
+
+🔗 Integração Frontend + Backend
+
+O frontend se comunica com o backend usando:
+
+http://localhost:8080
+
+
+Cookies são enviados automaticamente via credentials: "include" no fetch.
+
+Para que tudo funcione:
+
+O backend deve estar rodando antes do frontend.
+
+O navegador deve permitir cookies de localhost.
+
+🎨 Tecnologias Utilizadas
+Frontend
+
+React
+
+Vite
+
+TailwindCSS
+
+Hooks (useState, useEffect)
+
+Fetch API (com cookies)
+
+Backend
+
+Java 17
+
+Spring Boot
+
+Spring Web
+
+Spring Security (session)
+
+H2 Database
+
+JPA / Hibernate
+
+📷 Prints das Telas (Opcional – posso criar se quiser)
+
+Se quiser, eu gero imagens, adiciono GIFs ou deixo essa seção visual.
+
+🤝 Contribuição
+
+Contribuições são bem-vindas!
+Faça um fork, abra um PR ou envie sugestões.
+
+📄 Licença
+
+Este projeto é livre para estudo.
