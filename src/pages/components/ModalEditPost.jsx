@@ -44,12 +44,13 @@ function ModalEditPost({ open, onClose, post, onUpdated}) {
 
             onUpdated()
             onClose()
-            
+
         } catch (error) {
             alert("Erro ao atualizar o post")
             console.log(error)
         } finally {
             setLoading(false);
+            
         }
     }
 

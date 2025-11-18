@@ -6,6 +6,6 @@ const apiEditPost = axios.put({
     headers: {
         "Content-Type": "application/json"
     }
-}); 
+})
 
 export default apiEditPost;
